@@ -1,4 +1,4 @@
-import boom from "booom";
+import boom from "boom";
 import Car from "../models/Car";
 
 // Get all cars
@@ -7,7 +7,7 @@ const getCars = async () => {
     const cars = await Car.find();
     return cars;
   } catch (err) {
-    throw boom.bomify(err);
+    throw boom.boomify(err);
   }
 };
 
@@ -18,12 +18,24 @@ const getSingleCar = async req => {
     const car = await Car.findById(id);
     return car;
   } catch (err) {
-    throw boom.bomify(err);
+    throw boom.boomify(err);
   }
 };
 
 // Add a new car
 const addCar = async req => {
+  try {
+    const car = req.body;
+    const { ...updateData } = car;
+    const update = await Car.create(updateData);
+    return update;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+// Update a new car
+const updateCar = async req => {
   try {
     const { id } = req.params;
     const car = req.body;
@@ -31,7 +43,7 @@ const addCar = async req => {
     const update = await Car.findByIdAndUpdate(id, updateData, { new: true });
     return update;
   } catch (err) {
-    throw boom.bomify(err);
+    throw boom.boomify(err);
   }
 };
 
@@ -42,8 +54,8 @@ const deleteCar = async req => {
     const car = await Car.findByIdAndRemove(id);
     return car;
   } catch (err) {
-    throw boom.bomify(err);
+    throw boom.boomify(err);
   }
 };
 
-export { getCars, getSingleCar, addCar, deleteCar };
+export default { getCars, getSingleCar, addCar, updateCar, deleteCar };
