@@ -4,6 +4,10 @@ import routes from "./routes/index";
 import swaggerOptions from "./config/swagger";
 import fastifySwagger from "fastify-swagger";
 
+// *******************
+// Dont forget to start mongod!!!
+// *******************
+
 const server = fastify({ logger: true });
 
 // Register swagger

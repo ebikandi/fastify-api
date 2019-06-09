@@ -12,14 +12,3 @@ const carSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("Car", carSchema);
-
-// {
-//   "title": "fiat",
-//   "brand": "marea",
-//   "price": "2000€",
-//   "age": 15,
-//   "services": {
-//       "suspension":"groovy",
-//       "clock": false
-//   }
-// }
